@@ -1,0 +1,31 @@
+{
+  "name": "battlescribe-stylesheets-wh40k",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaeronAlagos/battlescribe-stylesheets-wh40k.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaeronAlagos/battlescribe-stylesheets-wh40k/issues"
+  },
+  "homepage": "https://github.com/DaeronAlagos/battlescribe-stylesheets-wh40k#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.0",
+    "gulp-inject": "^5.0.4",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-xslt": "^5.0.0",
+    "node-sass": "^4.12.0",
+    "yargs": "^14.0.0"
+  }
+}
