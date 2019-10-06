@@ -96,6 +96,6 @@ public/
 .dynamodb/
 
 # Custom
-build
+build/*
+!/build/.gitkeep
 package-lock.json
-!*/build/.gitkeep
