@@ -98,3 +98,4 @@ public/
 # Custom
 build
 package-lock.json
+!*/build/.gitkeep
