@@ -1,3 +1,35 @@
+section {
+    margin-bottom: 0.5cm;
+    &.roster-footer {
+        display: flex;
+    }
+    & > div {
+        flex-basis: 50%;
+        &.warlord {
+            margin-right: 0.5cm;
+        }
+        &.points-total {
+            margin-left: 0.5cm;
+        }
+    }
+}
+table.roster {
+    width: 100%;
+    border: 1px solid black;
+    & th {
+        background-color: black;
+        color: white;
+        text-transform: uppercase;
+        &.left-align {
+            text-align: left;
+        }
+    }
+    & th, td {
+        border: 1px solid black;
+        padding: 0 0.1cm;
+    }
+
+}
 .card {
     width: 15cm;
     min-height: 7cm;
