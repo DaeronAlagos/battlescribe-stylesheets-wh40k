@@ -15,7 +15,8 @@
   section.roster-footer {
     display: flex; }
   section > div {
-    flex-basis: 50%; }
+    flex-basis: 50%;
+    min-height: 3cm; }
     section > div.warlord {
       margin-right: 0.5cm; }
     section > div.points-total {
@@ -36,12 +37,36 @@ table.roster {
 
 .card {
   width: 15cm;
-  min-height: 7cm;
-  background-color: #cccccc; }
+  min-height: 7.5cm;
+  background-color: #cccccc;
+  border: 1px solid #cccccc;
+  border-radius: 0.4em; }
+  .card .card-header {
+    color: #eeeeee;
+    background-color: #1A2B1B;
+    border-top-left-radius: 0.4em;
+    border-top-right-radius: 0.4em;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0.2cm; }
 
 table.unit, table.weapon {
   width: 100%;
   font-size: 0.8em; }
+  table.unit th, table.weapon th {
+    background-color: #748A4E; }
+  table.unit th:first-child, table.unit td:first-child, table.weapon th:first-child, table.weapon td:first-child {
+    min-width: 2cm;
+    width: 2cm;
+    text-align: left; }
+
+table.unit th, table.unit td {
+  width: 1.44444cm;
+  text-align: center; }
+
+table.weapon th, table.weapon td {
+  width: 2.16667cm;
+  text-align: center; }
 
 					<!-- endinject -->
 				</style>
@@ -130,9 +155,11 @@ table.unit, table.weapon {
 	<!-- inject:card.xsl -->
     <xsl:template match="bs:selections/bs:selection[@type='model' or @type='unit']">
 		<div class="card">
-			<div><xsl:value-of select="@name"/></div>
-			<div>
-				<table class="unit">
+			<div class="card-header">
+				<xsl:value-of select="@name"/>
+			</div>
+			<div class="card-body">
+				<table class="unit" cellspacing="0">
 					<tr>
 		                <th>
 		                    Name
@@ -156,8 +183,8 @@ table.unit, table.weapon {
 		            </tr>
 				</table>
 			</div>
-			<div>
-				<table class="weapon">
+			<div class="card-body">
+				<table class="weapon" cellspacing="0">
 					<xsl:variable name="weapons" select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Weapon']"/>
 					<xsl:for-each select="$weapons[1]">
                         <th>
@@ -176,7 +203,7 @@ table.unit, table.weapon {
 					
 				</table>
 			</div>
-			<div>
+			<div class="card-body">
 				<table class="abilities">
 					<xsl:variable name="abilities" select="bs:rules/bs:rule"/>
                     <tr>
@@ -191,7 +218,7 @@ table.unit, table.weapon {
                     </tr>
 				</table>
 			</div>
-			<div>
+			<div class="card-body">
 				<table class="factionkw">
 					<xsl:variable name="factionkw" select="bs:categories/bs:category[@primary='false' and contains(@name, 'Faction')]"/>
 					<tr>
@@ -206,7 +233,7 @@ table.unit, table.weapon {
 					</tr>
 				</table>
 			</div>
-			<div>
+			<div class="card-body">
 				<table>
 					<xsl:variable name="kw" select="bs:categories/bs:category[@primary='false' and not(contains(@name, 'Faction'))]"/>
 					<tr>
