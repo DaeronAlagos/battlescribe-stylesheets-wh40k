@@ -1,3 +1,5 @@
+@import 'variables';
+
 section {
     margin-bottom: 0.5cm;
     &.roster-footer {
@@ -5,6 +7,7 @@ section {
     }
     & > div {
         flex-basis: 50%;
+        min-height: 3cm;
         &.warlord {
             margin-right: 0.5cm;
         }
@@ -31,11 +34,48 @@ table.roster {
 
 }
 .card {
-    width: 15cm;
-    min-height: 7cm;
-    background-color: #cccccc;
+    width: $card-width;
+    min-height: $card-min-height;
+    background-color: $card-background-color;
+    border: 1px solid #cccccc;
+    border-radius: 0.4em;
+    & .card-header {
+        color: $card-header-color;
+        background-color: $card-header-background-color;
+        border-top-left-radius: 0.4em;
+        border-top-right-radius: 0.4em;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 0.2cm;
+    }
+    // & .card-body {
+    //     padding: $card-padding;
+    // }
+
 }
 table.unit, table.weapon {
     width: 100%;
     font-size: 0.8em;
+    & th {
+        background-color: $card-table-header-background-color;
+    }
+    & th, td {
+        &:first-child {
+            min-width: 2cm;
+            width: 2cm;
+            text-align: left;
+        }
+    }
+}
+table.unit {
+    & th, td {
+        width: (($card-width - 2cm) / 9);
+        text-align: center;
+    }
+}
+table.weapon {
+    & th, td {
+        width: (($card-width - 2cm) / 6);
+        text-align: center;
+    }
 }

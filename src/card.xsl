@@ -1,8 +1,10 @@
 <xsl:template match="bs:selections/bs:selection[@type='model' or @type='unit']">
 		<div class="card">
-			<div><xsl:value-of select="@name"/></div>
-			<div>
-				<table class="unit">
+			<div class="card-header">
+				<xsl:value-of select="@name"/>
+			</div>
+			<div class="card-body">
+				<table class="unit" cellspacing="0">
 					<tr>
 		                <th>
 		                    Name
@@ -26,8 +28,8 @@
 		            </tr>
 				</table>
 			</div>
-			<div>
-				<table class="weapon">
+			<div class="card-body">
+				<table class="weapon" cellspacing="0">
 					<xsl:variable name="weapons" select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Weapon']"/>
 					<xsl:for-each select="$weapons[1]">
                         <th>
@@ -46,7 +48,7 @@
 					
 				</table>
 			</div>
-			<div>
+			<div class="card-body">
 				<table class="abilities">
 					<xsl:variable name="abilities" select="bs:rules/bs:rule"/>
                     <tr>
@@ -61,7 +63,7 @@
                     </tr>
 				</table>
 			</div>
-			<div>
+			<div class="card-body">
 				<table class="factionkw">
 					<xsl:variable name="factionkw" select="bs:categories/bs:category[@primary='false' and contains(@name, 'Faction')]"/>
 					<tr>
@@ -76,7 +78,7 @@
 					</tr>
 				</table>
 			</div>
-			<div>
+			<div class="card-body">
 				<table>
 					<xsl:variable name="kw" select="bs:categories/bs:category[@primary='false' and not(contains(@name, 'Faction'))]"/>
 					<tr>
