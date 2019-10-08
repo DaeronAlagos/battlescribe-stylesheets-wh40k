@@ -37,7 +37,7 @@ table.roster {
     width: $card-width;
     min-height: $card-min-height;
     background-color: $card-background-color;
-    border: 1px solid #cccccc;
+    border: $card-border;
     border-radius: 0.4em;
     & .card-header {
         color: $card-header-color;
@@ -48,6 +48,16 @@ table.roster {
         text-transform: uppercase;
         padding: 0.2cm;
     }
+    & .wound-track {
+        height: 2.5cm;
+        width: 6cm;
+        float: right;
+        z-index: 1;
+        position: absolute;
+        margin-left: 9.5cm;
+        background-color: white;
+        border: $card-border;
+    }
     // & .card-body {
     //     padding: $card-padding;
     // }
@@ -56,14 +66,28 @@ table.roster {
 table.unit, table.weapon {
     width: 100%;
     font-size: 0.8em;
+    border-collapse: collapse;
+    & tr {
+        background-color: $card-table-row-background-color;
+        &:nth-child(odd) {
+            background-color: $card-table-altrow-background-color;
+        }
+        &::nth-child(even) {
+            background-color: $card-table-row-background-color
+        }
+    }
     & th {
         background-color: $card-table-header-background-color;
     }
     & th, td {
         &:first-child {
+            padding: 0.1cm;
             min-width: 2cm;
             width: 2cm;
             text-align: left;
+        }
+        &:last-child {
+            min-width:6cm;
         }
     }
 }
@@ -79,3 +103,10 @@ table.weapon {
         text-align: center;
     }
 }
+
+@media print {
+    .card {
+      float: left;
+      page-break-inside: avoid;
+    }
+  }

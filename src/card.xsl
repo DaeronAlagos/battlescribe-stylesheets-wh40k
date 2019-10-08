@@ -1,5 +1,6 @@
 <xsl:template match="bs:selections/bs:selection[@type='model' or @type='unit']">
 		<div class="card">
+			<div class="wound-track"></div>
 			<div class="card-header">
 				<xsl:value-of select="@name"/>
 			</div>
@@ -11,6 +12,7 @@
 		                </th>
 		                <xsl:apply-templates select="bs:profiles/bs:profile[@typeName='Unit']" mode="header"/>
 		                <xsl:apply-templates select="bs:selections/bs:selection[@type='model']/bs:profiles/bs:profile[@typeName='Unit']" mode="header"/>
+										<th></th>
 		            </tr>
 		            <tr>
 		                <td>
@@ -25,6 +27,7 @@
 		                </td>
 		                <xsl:apply-templates select="bs:profiles/bs:profile[@typeName='Unit']" mode="body"/>
 		                <xsl:apply-templates select="bs:selections/bs:selection[@type='model']/bs:profiles/bs:profile[@typeName='Unit']" mode="body"/>
+										<td></td>
 		            </tr>
 				</table>
 			</div>
@@ -35,14 +38,16 @@
                         <th>
                             <xsl:value-of select="@typeName"/>
                         </th>
-                        <xsl:apply-templates mode="header"/>                    
+                        <xsl:apply-templates mode="header"/>    
+												<th></th>                
                     </xsl:for-each>
 					<xsl:for-each select="$weapons">
 						<tr>
 	                        <td>
 	                            <xsl:value-of select="@name"/>
 	                        </td>
-	                        <xsl:apply-templates mode="body"/>                    
+	                        <xsl:apply-templates mode="body"/>  
+													<td></td>                  
 	                    </tr>
 					</xsl:for-each>
 					
