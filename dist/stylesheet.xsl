@@ -117,6 +117,8 @@ table.weapon th, table.weapon td {
     text-align: left; }
 
 @media print {
+  #roster-footer {
+    page-break-after: always; }
   .card {
     float: left;
     page-break-inside: avoid; } }
@@ -159,7 +161,7 @@ table.weapon th, table.weapon td {
             <xsl:apply-templates select="bs:force" mode="roster"/>
         </table>
     </section>
-    <section class="roster-footer">
+    <section id="roster-footer" class="roster-footer">
         <div class="warlord">
             <table class="roster" cellspacing="0">
                 <tr>
