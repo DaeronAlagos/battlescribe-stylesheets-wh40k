@@ -25,7 +25,7 @@
             <xsl:apply-templates select="bs:force" mode="roster"/>
         </table>
     </section>
-    <section class="roster-footer">
+    <section id="roster-footer" class="roster-footer">
         <div class="warlord">
             <table class="roster" cellspacing="0">
                 <tr>

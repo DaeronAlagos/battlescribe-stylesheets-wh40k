@@ -143,6 +143,9 @@ table.weapon {
 }
 
 @media print {
+    #roster-footer {
+        page-break-after: always;
+      }
     .card {
       float: left;
       page-break-inside: avoid;
