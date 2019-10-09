@@ -1,4 +1,10 @@
 @import 'variables';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8em;
+}
 
 section {
     margin-bottom: 0.5cm;
@@ -39,6 +45,7 @@ table.roster {
     background-color: $card-background-color;
     border: $card-border;
     border-radius: 0.4em;
+    margin-bottom: 0.5cm;
     & .card-header {
         color: $card-header-color;
         background-color: $card-header-background-color;
@@ -50,13 +57,41 @@ table.roster {
     }
     & .wound-track {
         height: 2.5cm;
-        width: 6cm;
+        width: 5cm;
         float: right;
         z-index: 1;
         position: absolute;
-        margin-left: 9.5cm;
+        margin-left: 10.2cm;
         background-color: white;
         border: $card-border;
+        border-bottom-left-radius: 0.4em;
+        border-bottom-right-radius: 0.4em;
+        & span {
+            color: #FF0000;
+            font-weight: bold;
+        }
+        & .wound-track-header {
+            padding: 2px 4px;
+            font-size: 0.6em;
+        }
+        & table {
+            width: 100%;
+            font-size: 0.7em;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        & tr {
+            background-color: #FFFFFF;
+            &:nth-child(odd) {
+                background-color: $card-table-altrow-background-color;
+            }
+            &::nth-child(even) {
+                background-color: #FFFFFF;
+            }
+        }
+        & th {
+            background-color: $card-table-header-background-color;
+        }
     }
     // & .card-body {
     //     padding: $card-padding;
@@ -82,8 +117,8 @@ table.unit, table.weapon {
     & th, td {
         &:first-child {
             padding: 0.1cm;
-            min-width: 2cm;
-            width: 2cm;
+            min-width: 2.5cm;
+            width: 2.5cm;
             text-align: left;
         }
         &:last-child {
@@ -101,6 +136,9 @@ table.weapon {
     & th, td {
         width: (($card-width - 2cm) / 6);
         text-align: center;
+        &:last-child {
+            text-align: left;
+        }
     }
 }
 
