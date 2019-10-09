@@ -10,7 +10,12 @@
 			<head>
 				<style>
                     <!-- inject:../build/style.css -->
-					section {
+					@import url("https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap");
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8em; }
+
+section {
   margin-bottom: 0.5cm; }
   section.roster-footer {
     display: flex; }
@@ -38,9 +43,10 @@ table.roster {
 .card {
   width: 15cm;
   min-height: 7.5cm;
-  background-color: #8a8a8a;
-  border: 1px solid #2e2e2e;
-  border-radius: 0.4em; }
+  background-color: #acacac;
+  border: 2px solid #555555;
+  border-radius: 0.4em;
+  margin-bottom: 0.5cm; }
   .card .card-header {
     color: #eeeeee;
     background-color: #1A2B1B;
@@ -51,13 +57,34 @@ table.roster {
     padding: 0.2cm; }
   .card .wound-track {
     height: 2.5cm;
-    width: 6cm;
+    width: 5cm;
     float: right;
     z-index: 1;
     position: absolute;
-    margin-left: 9.5cm;
+    margin-left: 10.2cm;
     background-color: white;
-    border: 1px solid #2e2e2e; }
+    border: 2px solid #555555;
+    border-bottom-left-radius: 0.4em;
+    border-bottom-right-radius: 0.4em; }
+    .card .wound-track span {
+      color: #FF0000;
+      font-weight: bold; }
+    .card .wound-track .wound-track-header {
+      padding: 2px 4px;
+      font-size: 0.6em; }
+    .card .wound-track table {
+      width: 100%;
+      font-size: 0.7em;
+      border-collapse: collapse;
+      text-align: center; }
+    .card .wound-track tr {
+      background-color: #FFFFFF; }
+      .card .wound-track tr:nth-child(odd) {
+        background-color: #AFB7A4; }
+      .card .wound-track tr::nth-child(even) {
+        background-color: #FFFFFF; }
+    .card .wound-track th {
+      background-color: #748A4E; }
 
 table.unit, table.weapon {
   width: 100%;
@@ -73,8 +100,8 @@ table.unit, table.weapon {
     background-color: #748A4E; }
   table.unit th:first-child, table.unit td:first-child, table.weapon th:first-child, table.weapon td:first-child {
     padding: 0.1cm;
-    min-width: 2cm;
-    width: 2cm;
+    min-width: 2.5cm;
+    width: 2.5cm;
     text-align: left; }
   table.unit th:last-child, table.unit td:last-child, table.weapon th:last-child, table.weapon td:last-child {
     min-width: 6cm; }
@@ -86,6 +113,8 @@ table.unit th, table.unit td {
 table.weapon th, table.weapon td {
   width: 2.16667cm;
   text-align: center; }
+  table.weapon th:last-child, table.weapon td:last-child {
+    text-align: left; }
 
 @media print {
   .card {
@@ -179,57 +208,73 @@ table.weapon th, table.weapon td {
 	<!-- inject:card.xsl -->
     <xsl:template match="bs:selections/bs:selection[@type='model' or @type='unit']">
 		<div class="card">
-			<div class="wound-track"></div>
+			<xsl:if test="bs:profiles/bs:profile[@typeName='Wound Track (M/BS/A)']">
+				<div class="wound-track">
+					<div class="wound-track-header">
+						<span>DAMAGE</span><br/>
+						Some of this models characteristics change as it suffers damage, as shown below:
+					</div>
+					<table>
+						<tr>
+								<xsl:apply-templates select="bs:profiles/bs:profile[@typeName='Wound Track (M/BS/A)'][1]" mode="header"/>																
+						</tr>
+						<xsl:for-each select="bs:profiles/bs:profile[@typeName='Wound Track (M/BS/A)']">
+							<tr>
+								<xsl:apply-templates select="." mode="body"/>											
+							</tr>
+						</xsl:for-each>
+					</table>
+				</div>
+			</xsl:if>
 			<div class="card-header">
 				<xsl:value-of select="@name"/>
 			</div>
 			<div class="card-body">
 				<table class="unit" cellspacing="0">
 					<tr>
-		                <th>
-		                    Name
-		                </th>
-		                <xsl:apply-templates select="bs:profiles/bs:profile[@typeName='Unit']" mode="header"/>
-		                <xsl:apply-templates select="bs:selections/bs:selection[@type='model']/bs:profiles/bs:profile[@typeName='Unit']" mode="header"/>
-										<th></th>
-		            </tr>
-		            <tr>
-		                <td>
-		                	<xsl:choose>
-		                		<xsl:when test="bs:selections/bs:selection[@type='model']">
-		                			<xsl:value-of select="bs:selections/bs:selection[@type='model']/@name"/>
-		                		</xsl:when>
-		                		<xsl:otherwise>
-		                			<xsl:value-of select="@name"/>
-		                		</xsl:otherwise>
-		                	</xsl:choose>
-		                </td>
-		                <xsl:apply-templates select="bs:profiles/bs:profile[@typeName='Unit']" mode="body"/>
-		                <xsl:apply-templates select="bs:selections/bs:selection[@type='model']/bs:profiles/bs:profile[@typeName='Unit']" mode="body"/>
-										<td></td>
-		            </tr>
+							<th>
+									Name
+							</th>
+							<xsl:apply-templates select="bs:profiles/bs:profile[@typeName='Unit']" mode="header"/>
+							<xsl:apply-templates select="bs:selections/bs:selection[@type='model']/bs:profiles/bs:profile[@typeName='Unit']" mode="header"/>
+							<th></th>
+					</tr>
+					<tr>
+							<td>
+								<xsl:choose>
+									<xsl:when test="bs:selections/bs:selection[@type='model']">
+										<xsl:value-of select="bs:selections/bs:selection[@type='model']/@name"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="@name"/>
+									</xsl:otherwise>
+								</xsl:choose>
+							</td>
+							<xsl:apply-templates select="bs:profiles/bs:profile[@typeName='Unit']" mode="body"/>
+							<xsl:apply-templates select="bs:selections/bs:selection[@type='model']/bs:profiles/bs:profile[@typeName='Unit']" mode="body"/>
+							<td></td>
+					</tr>
 				</table>
 			</div>
 			<div class="card-body">
 				<table class="weapon" cellspacing="0">
 					<xsl:variable name="weapons" select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Weapon']"/>
 					<xsl:for-each select="$weapons[1]">
-                        <th>
-                            <xsl:value-of select="@typeName"/>
-                        </th>
-                        <xsl:apply-templates mode="header"/>    
-												<th></th>                
-                    </xsl:for-each>
+							<th>
+									<xsl:value-of select="@typeName"/>
+							</th>
+							<xsl:apply-templates mode="header"/>    
+							<!-- <th></th>                 -->
+					</xsl:for-each>
 					<xsl:for-each select="$weapons">
 						<tr>
-	                        <td>
-	                            <xsl:value-of select="@name"/>
-	                        </td>
-	                        <xsl:apply-templates mode="body"/>  
-													<td></td>                  
-	                    </tr>
+								<td>
+										<xsl:value-of select="@name"/>
+								</td>
+								<xsl:apply-templates mode="body"/>  
+								<!-- <td></td>                   -->
+						</tr>
 					</xsl:for-each>
-					
 				</table>
 			</div>
 			<div class="card-body">
